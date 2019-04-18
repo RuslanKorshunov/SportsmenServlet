@@ -1,6 +1,6 @@
 package entity;
 
-public class Sportsmen
+public class Sportsman
 {
     private long id;
     private String name="";

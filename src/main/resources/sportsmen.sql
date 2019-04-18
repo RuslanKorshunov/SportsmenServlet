@@ -1,6 +1,6 @@
-create database sportsmen;
-use sportsmen;
-CREATE TABLE IF NOT EXISTS sportsmen 
+create database sportsman;
+use sportsman;
+CREATE TABLE IF NOT EXISTS sportsman
 (
   idSportsmen INT NOT NULL,
   nameSp VARCHAR(45) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS sportsmen
   country VARCHAR(25) NOT NULL,
   PRIMARY KEY (idSportsmen));
   
-insert into sportsmen values
+insert into sportsman values
   (1, 'Yuzuru', 'Hanyu', 'Japan'),
   (2, 'Shoma', 'Uno', 'Japan'),
   (3, 'Javier', 'Fernández', 'Spain'),
@@ -23,7 +23,7 @@ insert into sportsmen values
     eventOG VARCHAR(45) NOT NULL,
     medal VARCHAR(6) NOT NULL,
     PRIMARY KEY (idSportsmen, numberOG),
-    FOREIGN KEY (idSportsmen) REFERENCES sportsmen(idSportsmen)
+    FOREIGN KEY (idSportsmen) REFERENCES sportsman(idSportsmen)
   );
   
   insert into medals values

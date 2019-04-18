@@ -5,10 +5,6 @@
     <title>Main</title>
 </head>
 <body>
-    <c:import url="date.jsp"/>
-    <form action="ControlServlet" method="get">
-        <input type="submit" name="button" value="sportsmen">
-        <input type="submit" name="button" value="medals">
-    </form>
+    <c:import url="header.jsp"/>
 </body>
 </html>

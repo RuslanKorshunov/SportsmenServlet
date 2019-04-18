@@ -2,25 +2,25 @@ package entity;
 
 public class Medal
 {
-    private Sportsmen sportsmen;
-    private int numberOfGame;
+    private Sportsman sportsman;
+    private int yearOfGame;
     private String event="";
     private MedalEnum type;
 
-    public Sportsmen getSportsmen() {
-        return sportsmen;
+    public Sportsman getSportsman() {
+        return sportsman;
     }
 
-    public void setSportsmen(Sportsmen sportsmen) {
-        this.sportsmen = sportsmen;
+    public void setSportsman(Sportsman sportsman) {
+        this.sportsman = sportsman;
     }
 
-    public int getNumberOfGame() {
-        return numberOfGame;
+    public int getYearOfGame() {
+        return yearOfGame;
     }
 
-    public void setNumberOfGame(int numberOfGame) {
-        this.numberOfGame = numberOfGame;
+    public void setYearOfGame(int yearOfGame) {
+        this.yearOfGame = yearOfGame;
     }
 
     public String getEvent() {
@@ -37,5 +37,15 @@ public class Medal
 
     public void setType(MedalEnum type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Medal{" +
+                "sportsman=" + sportsman +
+                ", yearOfGame=" + yearOfGame +
+                ", event='" + event + '\'' +
+                ", type=" + type +
+                '}';
     }
 }
