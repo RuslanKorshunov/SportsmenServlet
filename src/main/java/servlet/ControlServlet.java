@@ -2,6 +2,7 @@ package servlet;
 
 import command.AbstractCommand;
 import command.MedalCommand;
+import command.SportsmanCommand;
 import conncetion.DataBaseException;
 import dao.MedalDAO;
 import entity.Medal;
@@ -43,13 +44,17 @@ public class ControlServlet extends HttpServlet
                                                                                             IOException,
                                                                                             ServletException
     {
+        AbstractCommand command;
         String buttonValue=request.getParameter(BUTTON);
         switch (buttonValue)
         {
             case "sportsmen":
+                command=new SportsmanCommand();
+                command.execute(request);
+                request.getRequestDispatcher("jsp/sportsmen.jsp").forward(request, response);
                 break;
             case "medals":
-                MedalCommand command=new MedalCommand();
+                command=new MedalCommand();
                 command.execute(request);
                 request.getRequestDispatcher("jsp/medals.jsp").forward(request, response);
                 break;

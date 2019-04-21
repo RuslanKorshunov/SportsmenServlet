@@ -1,6 +1,5 @@
 package tag;
 
-import entity.Medal;
 import entity.Sportsman;
 
 import javax.servlet.jsp.JspException;
@@ -8,23 +7,20 @@ import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
 import java.util.List;
 
-public final class MedalTableTag extends AbstractTableTag
+public final class SportsmanTableTag extends AbstractTableTag
 {
     @Override
-    public void setValue(List entities)
-    {
+    public void setValue(List entities) {
         super.setValue(entities);
     }
 
     @Override
-    public int doStartTag() throws JspException
-    {
+    public int doStartTag() throws JspException {
         return super.doStartTag();
     }
 
     @Override
-    public int doEndTag() throws JspException
-    {
+    public int doEndTag() throws JspException {
         return super.doEndTag();
     }
 
@@ -34,21 +30,16 @@ public final class MedalTableTag extends AbstractTableTag
         out.write("<th scope='col'>"+ConstEnum.ID_SPORTSMEN.getValue()+"</th>");
         out.write("<th scope='col'>"+ConstEnum.NAME.getValue()+"</th>");
         out.write("<th scope='col'>"+ConstEnum.SURNAME.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.NUMBER_OG.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.EVENT_OG.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.MEDAL.getValue().toLowerCase()+"</th>");
+        out.write("<th scope='col'>"+ConstEnum.COUNTRY.getValue()+"</th>");
     }
 
     @Override
     protected void writeData(JspWriter out, Object entity) throws IOException
     {
-        Medal medal=(Medal)entity;
-        Sportsman sportsman=medal.getSportsman();
+        Sportsman sportsman=(Sportsman)entity;
         out.write("<th scope='col'>"+sportsman.getId()+"</th>");
         out.write("<th scope='col'>"+sportsman.getName()+"</th>");
         out.write("<th scope='col'>"+sportsman.getSurname()+"</th>");
-        out.write("<th scope='col'>"+medal.getYearOfGame()+"</th>");
-        out.write("<th scope='col'>"+medal.getEvent()+"</th>");
-        out.write("<th scope='col'>"+medal.getType().name()+"</th>");
+        out.write("<th scope='col'>"+sportsman.getCountry()+"</th>");
     }
 }

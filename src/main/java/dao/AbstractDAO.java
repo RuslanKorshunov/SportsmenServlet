@@ -9,11 +9,13 @@ import java.util.List;
 
 public abstract class AbstractDAO<T>
 {
+    protected static String query;
+
     protected MyConnection connection;
 
     public AbstractDAO() throws DataBaseException
     {
-        connection=connection=new MyConnection();
+        connection=new MyConnection();
     }
 
     public abstract List<T> find() throws DataBaseException;

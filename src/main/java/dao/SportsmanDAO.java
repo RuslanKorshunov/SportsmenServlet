@@ -1,7 +1,6 @@
 package dao;
 
 import conncetion.DataBaseException;
-import conncetion.MyConnection;
 import entity.Medal;
 import entity.MedalEnum;
 import entity.Sportsman;
@@ -12,25 +11,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedalDAO extends AbstractDAO<Medal>
+public class SportsmanDAO extends AbstractDAO<Sportsman>
 {
-    public MedalDAO() throws DataBaseException
+
+    public SportsmanDAO() throws DataBaseException
     {
         super();
-        query="select sportsmen.idSportsmen, " +
-                "sportsmen.nameSp, " +
-                "sportsmen.surnameSp, " +
-                "medals.numberOG, " +
-                "medals.eventOG, " +
-                "medals.medal " +
-                "from medals join sportsmen " +
-                "on medals.idSportsmen=sportsmen.idSportsmen";
+        query="select * from sportsmen";
     }
 
     @Override
-    public List<Medal> find() throws DataBaseException
+    public List<Sportsman> find() throws DataBaseException
     {
-        List<Medal> medals=new ArrayList<>();
+        List<Sportsman> sportsmen=new ArrayList<>();
         Statement statement=null;
         try
         {
@@ -38,7 +31,6 @@ public class MedalDAO extends AbstractDAO<Medal>
             ResultSet rs=statement.executeQuery(query);
             while (rs.next())
             {
-                Medal medal=new Medal();
                 Sportsman sportsman=new Sportsman();
                 int id=rs.getInt(1);
                 sportsman.setId(id);
@@ -46,25 +38,20 @@ public class MedalDAO extends AbstractDAO<Medal>
                 sportsman.setName(name);
                 String surname=rs.getString(3);
                 sportsman.setSurname(surname);
-                medal.setSportsman(sportsman);
-                int year=rs.getInt(4);
-                medal.setYearOfGame(year);
-                String event=rs.getString(5);
-                medal.setEvent(event);
-                MedalEnum medalEnum=MedalEnum.valueOf(rs.getString(6).toUpperCase());
-                medal.setType(medalEnum);
-                medals.add(medal);
+                String country=rs.getString(4);
+                sportsman.setCountry(country);
+                sportsmen.add(sportsman);
             }
         }
         catch (SQLException e)
         {
-            throw new DataBaseException("MedalDAO can't read data from database.");
+            throw new DataBaseException("SportsmanDAO can't read data from database.");
         }
         finally
         {
             closeStatement(statement);
         }
-        return medals;
+        return sportsmen;
     }
 
     @Override

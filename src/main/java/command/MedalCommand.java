@@ -18,7 +18,7 @@ public class MedalCommand extends AbstractCommand
         List<Medal> medals;
         AbstractDAO dao=new MedalDAO();
         medals=dao.find();
-        medals.forEach(medal -> System.out.println(medal));
+        dao.close();
         request.setAttribute(MEDALS, medals);
     }
 }
