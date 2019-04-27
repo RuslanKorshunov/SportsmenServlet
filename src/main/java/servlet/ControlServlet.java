@@ -1,11 +1,8 @@
 package servlet;
 
-import command.AbstractCommand;
-import command.MedalCommand;
-import command.SportsmanCommand;
+import command.*;
 import conncetion.DataBaseException;
-import dao.MedalDAO;
-import entity.Medal;
+import exception.IncorrectDataException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "ControlServlet", urlPatterns = {"/ControlServlet"})
 public class ControlServlet extends HttpServlet
@@ -27,7 +23,7 @@ public class ControlServlet extends HttpServlet
         {
             processRequest(request, response);
         }
-        catch (DataBaseException e)
+        catch (DataBaseException|IncorrectDataException e)
         {
             e.printStackTrace();
             //TODO добавить лог
@@ -37,27 +33,50 @@ public class ControlServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        super.doPost(request, response);
+        try
+        {
+            processRequest(request, response);
+        }
+        catch (DataBaseException|IncorrectDataException e)
+        {
+            e.printStackTrace();
+            //TODO добавить лог
+        }
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws DataBaseException,
+                                                                                            IncorrectDataException,
                                                                                             IOException,
                                                                                             ServletException
     {
+        //TODO поменять это
         AbstractCommand command;
         String buttonValue=request.getParameter(BUTTON);
+        Router router=null;
         switch (buttonValue)
         {
+            case "backward":
+                break;
+            case "forward":
+                command=new ForwardCommand();
+                router=command.execute(request);
+                break;
             case "sportsmen":
                 command=new SportsmanCommand();
-                command.execute(request);
-                request.getRequestDispatcher("jsp/sportsmen.jsp").forward(request, response);
+                router=command.execute(request);
                 break;
             case "medals":
                 command=new MedalCommand();
-                command.execute(request);
-                request.getRequestDispatcher("jsp/medals.jsp").forward(request, response);
+                router=command.execute(request);
                 break;
+        }
+        if(router.getType()== Router.Type.FORWARD)
+        {
+            request.getRequestDispatcher(router.getTarget()).forward(request ,response);
+        }
+        else
+        {
+            response.sendRedirect(router.getTarget());
         }
     }
 }

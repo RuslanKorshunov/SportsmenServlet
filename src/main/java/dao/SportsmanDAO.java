@@ -1,8 +1,6 @@
 package dao;
 
 import conncetion.DataBaseException;
-import entity.Medal;
-import entity.MedalEnum;
 import entity.Sportsman;
 
 import java.sql.ResultSet;
@@ -21,7 +19,7 @@ public class SportsmanDAO extends AbstractDAO<Sportsman>
     }
 
     @Override
-    public List<Sportsman> find() throws DataBaseException
+    public List<Sportsman> find(int indexFirst) throws DataBaseException
     {
         List<Sportsman> sportsmen=new ArrayList<>();
         Statement statement=null;

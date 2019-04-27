@@ -1,7 +1,6 @@
 package dao;
 
 import conncetion.DataBaseException;
-import conncetion.MyConnection;
 import entity.Medal;
 import entity.MedalEnum;
 import entity.Sportsman;
@@ -28,12 +27,14 @@ public class MedalDAO extends AbstractDAO<Medal>
     }
 
     @Override
-    public List<Medal> find() throws DataBaseException
+    public List<Medal> find(int indexFirst) throws DataBaseException
     {
         List<Medal> medals=new ArrayList<>();
         Statement statement=null;
         try
         {
+            int indexLast=indexFirst+RANGE;
+            query+=" where sportsmen.idSportsmen>="+indexFirst+" and sportsmen.idSportsmen<="+indexLast;
             statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(query);
             while (rs.next())

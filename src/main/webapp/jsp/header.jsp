@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
@@ -8,7 +8,7 @@
         <form action="ControlServlet" method="get">
             <input type="submit" name="button" value="sportsmen">
             <input type="submit" name="button" value="medals">
+            <br/>
         </form>
-        <br/>
     </body>
 </html>

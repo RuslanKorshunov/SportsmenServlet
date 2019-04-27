@@ -9,6 +9,8 @@ import java.util.List;
 
 public abstract class AbstractDAO<T>
 {
+    protected static final int RANGE=4;
+
     protected static String query;
 
     protected MyConnection connection;
@@ -18,7 +20,7 @@ public abstract class AbstractDAO<T>
         connection=new MyConnection();
     }
 
-    public abstract List<T> find() throws DataBaseException;
+    public abstract List<T> find(int indexFirst) throws DataBaseException;
 
     protected void closeStatement(Statement statement)
     {
