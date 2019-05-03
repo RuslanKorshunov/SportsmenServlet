@@ -10,22 +10,18 @@ import java.util.List;
 
 public class MedalCommand extends AbstractCommand
 {
-    private static final String MEDALS="medals";
-    private static final String PAGE="page";
-
     @Override
     public Router execute(HttpServletRequest request) throws DataBaseException
     {
         Router router=new Router();
         router.setTarget(Page.MEDALS.getPage());
-        List<Medal> medals;
         AbstractDAO dao=new MedalDAO();
         int indexFirst=1;
         int page=1;
-        medals=dao.find(indexFirst);
+        List<Medal> medals=dao.find(indexFirst);
         dao.close();
-        request.setAttribute(MEDALS, medals);
-        request.setAttribute(PAGE, page);
+        request.setAttribute(CommandConst.MEDALS.getValue(), medals);
+        request.setAttribute(CommandConst.PAGE.getValue(), page);
         return router;
     }
 }

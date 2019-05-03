@@ -31,12 +31,12 @@ public final class MedalTableTag extends AbstractTableTag
     @Override
     protected void createHeader(JspWriter out) throws IOException
     {
-        out.write("<th scope='col'>"+ConstEnum.ID_SPORTSMEN.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.NAME.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.SURNAME.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.NUMBER_OG.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.EVENT_OG.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.MEDAL.getValue().toLowerCase()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.ID_SPORTSMEN.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.NAME.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.SURNAME.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.NUMBER_OG.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.EVENT_OG.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.MEDAL.getValue().toLowerCase()+"</th>");
     }
 
     @Override

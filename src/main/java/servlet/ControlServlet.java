@@ -52,20 +52,21 @@ public class ControlServlet extends HttpServlet
         //TODO поменять это
         AbstractCommand command;
         String buttonValue=request.getParameter(BUTTON);
+        CommandConst commandConst=CommandConst.getConst(buttonValue);
         Router router=null;
-        switch (buttonValue)
+        switch (commandConst)
         {
-            case "backward":
+            case BACKWARD:
                 break;
-            case "forward":
+            case FORWARD:
                 command=new ForwardCommand();
                 router=command.execute(request);
                 break;
-            case "sportsmen":
+            case SPORTSMEN:
                 command=new SportsmanCommand();
                 router=command.execute(request);
                 break;
-            case "medals":
+            case MEDALS:
                 command=new MedalCommand();
                 router=command.execute(request);
                 break;

@@ -1,6 +1,6 @@
 package tag;
 
-public enum ConstEnum
+public enum TagConst
 {
     ID_SPORTSMEN("ID"),
     NUMBER_OG("Number of OG"),
@@ -12,7 +12,7 @@ public enum ConstEnum
 
     private String value;
 
-    ConstEnum(String value)
+    TagConst(String value)
     {
         this.value = value;
     }

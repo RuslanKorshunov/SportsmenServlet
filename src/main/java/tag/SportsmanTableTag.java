@@ -27,10 +27,10 @@ public final class SportsmanTableTag extends AbstractTableTag
     @Override
     protected void createHeader(JspWriter out) throws IOException
     {
-        out.write("<th scope='col'>"+ConstEnum.ID_SPORTSMEN.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.NAME.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.SURNAME.getValue()+"</th>");
-        out.write("<th scope='col'>"+ConstEnum.COUNTRY.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.ID_SPORTSMEN.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.NAME.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.SURNAME.getValue()+"</th>");
+        out.write("<th scope='col'>"+ TagConst.COUNTRY.getValue()+"</th>");
     }
 
     @Override

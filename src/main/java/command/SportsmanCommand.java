@@ -10,8 +10,6 @@ import java.util.List;
 
 public class SportsmanCommand extends AbstractCommand
 {
-    private static final String SPORTSMEN="sportsmen";
-
     @Override
     public Router execute(HttpServletRequest request) throws DataBaseException
     {
@@ -21,7 +19,7 @@ public class SportsmanCommand extends AbstractCommand
         AbstractDAO dao=new SportsmanDAO();
         sportsmen=dao.find(1);
         dao.close();
-        request.setAttribute(SPORTSMEN, sportsmen);
+        request.setAttribute(CommandConst.SPORTSMEN.getValue(), sportsmen);
         return router;
     }
 }

@@ -5,8 +5,8 @@
     <title>Main</title>
 </head>
 <body>
+    <c:import url="header.jsp"/>
     <form action="ControlServlet" method="get">
-        <c:import url="header.jsp"/>
         <c:set var="page" value="1" scope="request"/>
     </form>
 </body>
