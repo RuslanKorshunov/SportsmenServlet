@@ -1,11 +1,14 @@
 package command;
 
-import conncetion.DataBaseException;
+import conncetion.ConnectionException;
+import dao.DAOException;
 import exception.IncorrectDataException;
 
 import javax.servlet.http.HttpServletRequest;
 
 public abstract class AbstractCommand
 {
-    public abstract Router execute(HttpServletRequest request) throws DataBaseException, IncorrectDataException;
+    public abstract Router execute(HttpServletRequest request) throws ConnectionException,
+                                                                        IncorrectDataException,
+                                                                        DAOException;
 }

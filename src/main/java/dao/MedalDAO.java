@@ -1,6 +1,6 @@
 package dao;
 
-import conncetion.DataBaseException;
+import conncetion.ConnectionException;
 import entity.Medal;
 import entity.MedalEnum;
 import entity.Sportsman;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MedalDAO extends AbstractDAO<Medal>
 {
-    public MedalDAO() throws DataBaseException
+    public MedalDAO() throws ConnectionException
     {
         super();
         query="select sportsmen.idSportsmen, " +
@@ -24,17 +24,17 @@ public class MedalDAO extends AbstractDAO<Medal>
                 "medals.medal " +
                 "from medals join sportsmen " +
                 "on medals.idSportsmen=sportsmen.idSportsmen";
+        table="medals";
     }
 
     @Override
-    public List<Medal> find(int indexFirst) throws DataBaseException
+    public List<Medal> find(int indexFirst) throws DAOException
     {
         List<Medal> medals=new ArrayList<>();
         Statement statement=null;
         try
         {
-            int indexLast=indexFirst+RANGE;
-            query+=" where sportsmen.idSportsmen>="+indexFirst+" and sportsmen.idSportsmen<="+indexLast;
+            query+=" limit "+indexFirst+", "+SIZE_SAMPLE;
             statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(query);
             while (rs.next())
@@ -59,7 +59,7 @@ public class MedalDAO extends AbstractDAO<Medal>
         }
         catch (SQLException e)
         {
-            throw new DataBaseException("MedalDAO can't read data from database.");
+            throw new DAOException("MedalDAO can't read data from database.");
         }
         finally
         {

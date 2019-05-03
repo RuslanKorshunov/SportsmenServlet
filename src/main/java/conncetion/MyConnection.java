@@ -12,7 +12,7 @@ public class MyConnection
     private static final String PASSWORD="12345";
     private Connection connection;
 
-    public MyConnection() throws DataBaseException
+    public MyConnection() throws ConnectionException
     {
         try
         {
@@ -22,7 +22,7 @@ public class MyConnection
         catch (SQLException e)
         {
             System.out.println(e);
-            throw new DataBaseException("Connection couldn't be created.");
+            throw new ConnectionException("Connection couldn't be created.");
         }
     }
 

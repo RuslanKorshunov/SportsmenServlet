@@ -1,7 +1,8 @@
 package command;
 
-import conncetion.DataBaseException;
+import conncetion.ConnectionException;
 import dao.AbstractDAO;
+import dao.DAOException;
 import dao.SportsmanDAO;
 import entity.Sportsman;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class SportsmanCommand extends AbstractCommand
 {
     @Override
-    public Router execute(HttpServletRequest request) throws DataBaseException
+    public Router execute(HttpServletRequest request) throws ConnectionException, DAOException
     {
         Router router=new Router();
         router.setTarget(Page.SPORTSMEN.getPage());

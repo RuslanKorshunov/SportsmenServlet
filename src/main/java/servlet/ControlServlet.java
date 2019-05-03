@@ -1,7 +1,8 @@
 package servlet;
 
 import command.*;
-import conncetion.DataBaseException;
+import conncetion.ConnectionException;
+import dao.DAOException;
 import exception.IncorrectDataException;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class ControlServlet extends HttpServlet
         {
             processRequest(request, response);
         }
-        catch (DataBaseException|IncorrectDataException e)
+        catch (ConnectionException | IncorrectDataException | DAOException e)
         {
             e.printStackTrace();
             //TODO добавить лог
@@ -37,17 +38,18 @@ public class ControlServlet extends HttpServlet
         {
             processRequest(request, response);
         }
-        catch (DataBaseException|IncorrectDataException e)
+        catch (ConnectionException | IncorrectDataException | DAOException e)
         {
             e.printStackTrace();
             //TODO добавить лог
         }
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws DataBaseException,
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ConnectionException,
                                                                                             IncorrectDataException,
                                                                                             IOException,
-                                                                                            ServletException
+                                                                                            ServletException,
+                                                                                            DAOException
     {
         //TODO поменять это
         AbstractCommand command;

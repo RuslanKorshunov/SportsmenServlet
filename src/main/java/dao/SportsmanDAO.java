@@ -1,6 +1,6 @@
 package dao;
 
-import conncetion.DataBaseException;
+import conncetion.ConnectionException;
 import entity.Sportsman;
 
 import java.sql.ResultSet;
@@ -12,14 +12,15 @@ import java.util.List;
 public class SportsmanDAO extends AbstractDAO<Sportsman>
 {
 
-    public SportsmanDAO() throws DataBaseException
+    public SportsmanDAO() throws ConnectionException
     {
         super();
         query="select * from sportsmen";
+        table="sportsmen";
     }
 
     @Override
-    public List<Sportsman> find(int indexFirst) throws DataBaseException
+    public List<Sportsman> find(int indexFirst) throws DAOException
     {
         List<Sportsman> sportsmen=new ArrayList<>();
         Statement statement=null;
@@ -43,7 +44,7 @@ public class SportsmanDAO extends AbstractDAO<Sportsman>
         }
         catch (SQLException e)
         {
-            throw new DataBaseException("SportsmanDAO can't read data from database.");
+            throw new DAOException("SportsmanDAO can't read data from database.");
         }
         finally
         {
