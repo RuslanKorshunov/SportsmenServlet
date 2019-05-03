@@ -59,6 +59,8 @@ public class ControlServlet extends HttpServlet
         switch (commandConst)
         {
             case BACKWARD:
+                command=new BackwardCommand();
+                router=command.execute(request);
                 break;
             case FORWARD:
                 command=new ForwardCommand();

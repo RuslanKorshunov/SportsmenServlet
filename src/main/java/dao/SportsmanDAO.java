@@ -26,6 +26,7 @@ public class SportsmanDAO extends AbstractDAO<Sportsman>
         Statement statement=null;
         try
         {
+            query+=" limit "+indexFirst+", "+SIZE_SAMPLE;
             statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(query);
             while (rs.next())

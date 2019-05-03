@@ -8,6 +8,12 @@
 <body>
     <c:import url="header.jsp"/>
     <ctg:sportsmenTable value="${sportsmen}"/>
-    <input type="hidden" name="table" value="sportsmen"/>
+    <form action="ControlServlet" method="get">
+        <input type="submit" src="images/backward.png" name="button" value="backward"/>
+        <input type="text" value="${page}" size="${page}">
+        <input type="submit" src="images/forward.png" name="button" value="forward">
+        <input type="hidden" name="table" value="sportsmen"/>
+        <input type="hidden" name="page" value="${page}">
+    </form>
 </body>
 </html>

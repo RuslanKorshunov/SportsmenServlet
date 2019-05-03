@@ -16,11 +16,13 @@ public class SportsmanCommand extends AbstractCommand
     {
         Router router=new Router();
         router.setTarget(Page.SPORTSMEN.getPage());
-        List<Sportsman> sportsmen;
         AbstractDAO dao=new SportsmanDAO();
-        sportsmen=dao.find(1);
+        int indexFirst=0;
+        int page=1;
+        List<Sportsman> sportsmen=dao.find(indexFirst);
         dao.close();
         request.setAttribute(CommandConst.SPORTSMEN.getValue(), sportsmen);
+        request.setAttribute(CommandConst.PAGE.getValue(), page);
         return router;
     }
 }
